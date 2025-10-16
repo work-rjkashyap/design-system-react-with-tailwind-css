@@ -1,73 +1,49 @@
-# React + TypeScript + Vite
+# Design System React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Vite + React + Tailwind v4 playground for building and showcasing a token-driven design system. The default configuration ships an “India” brand theme, a basic component library, and a light/dark mode toggle powered by a custom theme provider.
 
-Currently, two official plugins are available:
+## Prerequisites
+- Node.js 18.18+ (Node 20 LTS recommended for Vite 7)
+- npm 9+ (project uses `package-lock.json`)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
+1. Install dependencies
+   ```bash
+   npm install
+   ```
+2. Start the design system playground
+   ```bash
+   npm run dev
+   ```
+   The Vite dev server logs the preview URL (defaults to `http://localhost:5173`). Hot Module Replacement is enabled.
 
-## React Compiler
+## Core Scripts
+- `npm run dev` – start the Vite dev server.
+- `npm run build` – type-check (`tsc -b`) and create a production build.
+- `npm run preview` – serve the production build locally.
+- `npm run lint` – run ESLint across the project.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Project Layout
+- `src/theme` – token sources grouped by domain (colors, spacing, typography, layout, brand overrides, etc.).
+- `src/components` – shared primitives (`ui/`) plus higher-level examples (`card`, `mode-toggle`, `theme-provider`).
+- `src/main.tsx` – application entry; mounts `App` and imports global CSS.
+- `src/index.css` – Tailwind v4 + animation presets + theme imports.
 
-## Expanding the ESLint configuration
+## Working with Tokens and Brands
+- Tokens live under `src/theme/india`. Each file scopes a token category using CSS custom properties.
+- `src/theme/index.css` composes the token files so Tailwind classes and components can consume them.
+- Switching brands is handled by toggling the `data-brand` attribute on `document.documentElement`. The sample `Brand: India` button in `App.tsx` shows how to activate the India theme. Add additional brand token folders (e.g. `src/theme/acme`) and extend `theme/index.css` with extra imports.
+- Light/dark mode is controlled by the custom `ThemeProvider` (`src/components/theme-provider.tsx`), which syncs the `light`/`dark` classes to the root element and persists the preference in `localStorage`. Use `useTheme()` to read or change the mode inside components.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Extending the Design System
+- Add new primitives in `src/components/ui` using the shared utilities from `src/lib/utils.ts` and the Tailwind + token variables.
+- Document brand-specific overrides in `brands.css`. This is the right place for CSS driven by `data-brand`.
+- When you introduce new tokens, expose them via CSS `var(--token-name)` values to keep Tailwind and plain CSS in sync.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Linting and Type Safety
+- TypeScript configuration is split between `tsconfig.json`, `tsconfig.app.json`, and `tsconfig.node.json`.
+- ESLint rules live in `eslint.config.js`. Run `npm run lint` before committing to keep the component library consistent.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Deployment
+1. Build the bundle with `npm run build`.
+2. Serve the contents of `dist/` with any static host (Vercel, Netlify, GitHub Pages, etc.).
