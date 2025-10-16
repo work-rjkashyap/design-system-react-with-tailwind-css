@@ -1,6 +1,14 @@
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/card";
-import { ThemeProvider } from "@/components/theme-provider"
+import {
+    Card,
+    CardHeader,
+    CardTitle,
+    CardDescription,
+    CardContent as CardBody,
+    CardFooter,
+    CardAction,
+} from "@/components/card";
+import { ThemeProvider, useTheme } from "@/components/theme-provider"
 import { ModeToggle } from "@/components/mode-toggle";
 
 
@@ -26,13 +34,45 @@ export default function App() {
 
 
                 <main className="container-app grid gap-6 sm:grid-cols-2">
-                    <Card>
-                        <h2 className="text-lg font-semibold mb-2">Card</h2>
-                        <p className="text-sm opacity-80">Tokenized theme in action.</p>
-                        <Button className="mt-4">Primary</Button>
+                    <Card animated>
+                        <CardHeader>
+                            <div>
+                                <CardTitle>Card</CardTitle>
+                                <CardDescription>Tokenized theme in action.</CardDescription>
+                            </div>
+                            <CardAction>
+                                <ModeToggle />
+                            </CardAction>
+                        </CardHeader>
+
+                        <CardBody>
+                            <ThemeControls />
+                        </CardBody>
+
+                        <CardFooter>
+                            <div className="flex gap-2">
+                                <Button>Primary</Button>
+                                <Button variant="ghost">Secondary</Button>
+                            </div>
+                        </CardFooter>
                     </Card>
                 </main>
             </div>
         </ThemeProvider>
     );
+}
+
+function ThemeControls() {
+    const { theme, setTheme } = useTheme();
+
+    return (
+        <div className="flex flex-col gap-3">
+            <div className="text-sm">Current theme: <strong className="ml-2">{theme}</strong></div>
+            <div className="flex gap-2">
+                <Button onClick={() => setTheme("light")}>Light</Button>
+                <Button onClick={() => setTheme("dark")}>Dark</Button>
+                <Button onClick={() => setTheme("system")}>System</Button>
+            </div>
+        </div>
+    )
 }

@@ -33,9 +33,10 @@ A Vite + React + Tailwind v4 playground for building and showcasing a token-driv
 - `src/index.css` – Tailwind v4 + animation presets + theme imports.
 
 ## Micro Animations & Motion Tokens
-- Motion tokens live in `src/theme/india/micro-animations.css`. They expose reusable durations (`--dur-*`), easing, and keyframes for small interactions.
+- CSS motion tokens live in `src/theme/india/micro-animations.css`. They expose reusable durations (`--dur-*`), easing, and keyframes for small interactions.
 - Utility classes like `animate-micro-scale-in` and the `.micro-press` component class are globally available once imported through `src/theme/index.css`.
-- Components (e.g., the Button) consume these tokens to deliver subtle entrance and press states while respecting `prefers-reduced-motion`.
+- `src/components/ui/motion.tsx` defines Framer Motion-powered tokens (`motionTokens`) plus ready-made `MotionButton`/`MotionCard` wrappers that align with the CSS values.
+- Components (e.g., the Button) consume these tokens to deliver subtle entrance, hover, and press states while respecting `prefers-reduced-motion`.
 
 ## Working with Tokens and Brands
 - Tokens live under `src/theme/india`. Each file scopes a token category using CSS custom properties.
@@ -48,6 +49,7 @@ A Vite + React + Tailwind v4 playground for building and showcasing a token-driv
 - Document brand-specific overrides in `brands.css`. This is the right place for CSS driven by `data-brand`.
 - When you introduce new tokens, expose them via CSS `var(--token-name)` values to keep Tailwind and plain CSS in sync.
 - `src/components/ui/button.tsx` now supports `leadingIcon`/`trailingIcon` props that size icons automatically for `sm|md|lg` buttons. Pass any `ReactNode` (usually a Lucide icon).
+- Motion-aware wrappers are available via `MotionButton` and `MotionCard`. Consume them directly or lean on the exported `motionTokens` if you need custom Framer Motion transitions.
 - The `ModeToggle` example (`src/components/mode-toggle.tsx`) demonstrates how to pair the Button icon slots with `lucide-react` icons and a dropdown menu for theme selection.
 
 ## Linting and Formatting
