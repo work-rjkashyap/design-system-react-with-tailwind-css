@@ -1,4 +1,4 @@
 @import "tailwindcss"; /* Tailwind v4 */
-@import "tailwindcss/typography"; /* Tailwind typography */
+@plugin "@tailwindcss/typography"; /* Tailwind typography */
 @import "tw-animate-css"; /* Tailwind forms */
 @import "./theme/index.css"; /* Your theme parts */

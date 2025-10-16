@@ -1,0 +1,61 @@
+@layer base {
+  :root {
+    --dur-2: 180ms;
+    --dur-3: 240ms;
+    --micro-translate-y: 6px;
+    --micro-scale-initial: 0.96;
+  }
+}
+
+@keyframes micro-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(var(--micro-translate-y));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes micro-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(var(--micro-scale-initial));
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes micro-press {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.97);
+  }
+}
+
+@utility animate-micro-fade-in-up {
+  animation: micro-fade-in-up var(--dur-2) var(--ease-brand) both;
+}
+
+@utility animate-micro-scale-in {
+  animation: micro-scale-in var(--dur-3) var(--ease-brand) both;
+}
+
+@layer components {
+  .micro-press {
+    transition: transform var(--dur-1) var(--ease-brand);
+  }
+
+  .micro-press:where(:active, :focus-visible) {
+    transform: scale(0.97);
+  }
+}
