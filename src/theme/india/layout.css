@@ -1,0 +1,13 @@
+@layer base {
+  html, body { @apply bg-[var(--background)] text-[var(--foreground)] antialiased; }
+}
+
+@layer components {
+  .container-app { @apply mx-auto max-w-7xl px-4; }
+
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-[var(--radius)] px-4 py-2 font-medium transition duration-150 ease-linear focus:outline-none; }
+  .btn-primary { @apply bg-[var(--primary)] text-[var(--primary-foreground)] hover:brightness-95 active:brightness-90; }
+  .btn-ghost { @apply bg-transparent text-[var(--primary)] hover:bg-[var(--muted)]; }
+
+  .card { @apply bg-[var(--card)] text-[var(--card-foreground)] shadow-card rounded-[var(--radius)] p-4; }
+}

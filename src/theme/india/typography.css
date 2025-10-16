@@ -1,0 +1,14 @@
+
+@layer base {
+  :root { --heading-weight: 650; --body-weight: 450; }
+  h1,h2,h3,h4 { font-weight: var(--heading-weight); }
+  p,li,small  { font-weight: var(--body-weight); }
+}
+
+.prose {
+  --tw-prose-body: var(--foreground);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-links: var(--primary);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-muted: color-mix(in oklab, var(--foreground), white 45%);
+}

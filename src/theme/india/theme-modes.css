@@ -1,0 +1,17 @@
+/* Use .dark class instead of data-attribute */
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant hocus (&:is(:hover, :focus-visible));
+
+@layer base {
+  @media (prefers-reduced-motion: reduce) {
+    :root { --dur-1: 0ms; --ease-brand: linear; }
+  }
+}
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant hocus (&:is(:hover, :focus-visible));
+
+@layer base {
+  @media (prefers-reduced-motion: reduce) {
+    :root { --dur-1: 0ms; --ease-brand: linear; }
+  }
+}
