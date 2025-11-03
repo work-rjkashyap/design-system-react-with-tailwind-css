@@ -16,8 +16,9 @@ function Card({ className, animated = false, ...props }: CardProps) {
 
     if (animated) {
         // Render motion-backed card when requested. Props are cast to any to satisfy
-        // the motion component's prop signature.
+        // the motion component's prop signature which conflicts with div props.
         return (
+            /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
             <MotionCardBase data-slot="card" className={classes} {...(props as any)} />
         )
     }
@@ -44,7 +45,7 @@ function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
     return (
         <div
             data-slot="card-title"
-            className={cn("leading-none font-semibold", className)}
+            className={cn("font-semibold text-base/6 sm:text-lg/6", className)}
             {...props}
         />
     )
@@ -54,7 +55,7 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
     return (
         <div
             data-slot="card-description"
-            className={cn("text-muted-foreground text-sm", className)}
+            className={cn("text-muted-foreground text-base/6 sm:text-sm/6", className)}
             {...props}
         />
     )

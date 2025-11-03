@@ -9,7 +9,7 @@ export const SidebarTitle: React.FC<SidebarTitleProps> = ({
 
     return (
         <h1
-            className={`font-bold text-xl transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 w-0'
+            className={`text-sidebar-foreground font-semibold text-base/6 sm:text-lg/6 transition-opacity duration-300 ${isOpen ? 'opacity-100' : 'opacity-0 w-0'
                 } ${className}`}
         >
             {children}

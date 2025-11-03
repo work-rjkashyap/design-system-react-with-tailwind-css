@@ -13,7 +13,7 @@ export const SidebarRoot: React.FC<SidebarRootProps> = ({
         <SidebarContext.Provider value={{ isOpen, setIsOpen }}>
             <aside
                 className={`${isOpen ? 'w-64' : 'w-20'
-                    } bg-gray-900 text-white transition-all duration-300 ease-in-out flex flex-col ${className}`}
+                    } bg-sidebar text-sidebar-foreground transition-all duration-300 ease-in-out flex flex-col ${className}`}
             >
                 {children}
             </aside>

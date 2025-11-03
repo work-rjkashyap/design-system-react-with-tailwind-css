@@ -5,7 +5,7 @@ export const SidebarFooter: React.FC<SidebarFooterProps> = ({
     className = ''
 }) => {
     return (
-        <div className={`p-4 border-t border-gray-700 ${className}`}>
+        <div className={`p-4 border-t border-sidebar-border ${className}`}>
             {children}
         </div>
     );

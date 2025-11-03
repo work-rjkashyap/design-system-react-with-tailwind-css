@@ -6,7 +6,7 @@ import { MotionButton, motionTokens } from "./motion";
 
 
 const button = cva(
-    "inline-flex items-center justify-center gap-2 rounded-[var(--radius)] px-4 py-2 font-medium transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-60",
+    "inline-flex items-center justify-center gap-2 rounded-[var(--radius)] font-medium transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-60",
     {
         variants: {
             variant: {
@@ -16,9 +16,9 @@ const button = cva(
                 destructive: "bg-[var(--destructive)] text-[var(--destructive-foreground)] hover:brightness-95",
             },
             size: {
-                sm: "text-sm px-3 py-1.5",
-                md: "text-base px-4 py-2",
-                lg: "text-base px-5 py-2.5",
+                sm: "px-3 py-1.5 text-sm/6",
+                md: "px-4 py-2 text-base/6",
+                lg: "px-5 py-2.5 text-lg/6",
             },
         },
         defaultVariants: { variant: "default", size: "md" },
@@ -60,7 +60,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         },
         ref
     ) => {
-        const resolvedSize = (size ?? "md") as keyof typeof ICON_SIZE_MAP;
+        const resolvedSize = size ?? "md";
         const iconClass = clsx(
             "inline-flex shrink-0 items-center justify-center text-current",
             ICON_SIZE_MAP[resolvedSize]

@@ -24,8 +24,8 @@ export const SidebarItem: React.FC<SidebarItemProps> = ({
                 href={href}
                 onClick={handleClick}
                 className={`flex items-center gap-4 p-3 rounded-lg transition-colors ${active
-                    ? 'bg-gray-800 text-white'
-                    : 'hover:bg-gray-800 text-gray-300 hover:text-white'
+                    ? 'bg-sidebar-primary text-sidebar-primary-foreground'
+                    : 'hover:bg-sidebar-accent text-sidebar-foreground hover:text-sidebar-accent-foreground'
                     } ${className}`}
             >
                 {Icon && <Icon size={20} className="flex-shrink-0" />}

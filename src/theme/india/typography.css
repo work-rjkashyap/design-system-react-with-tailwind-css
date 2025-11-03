@@ -1,8 +1,16 @@
+/*
+ * Typography following IntentUI patterns
+ * Using standard Tailwind typography classes instead of custom CSS variables
+ */
 
 @layer base {
-  :root { --heading-weight: 650; --body-weight: 450; }
-  h1,h2,h3,h4 { font-weight: var(--heading-weight); }
-  p,li,small  { font-weight: var(--body-weight); }
+  /* Base typography styles following IntentUI patterns */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 600; /* font-semibold */
+  }
 }
 
 .prose {
